@@ -1,0 +1,51 @@
+﻿@page
+@model Seller_Web_App.Pages.DistributorInventory.DistributorStockModels
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Available Distributor Stock";
+}
+
+<h1>Available Distributor Stock</h1>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var modelState in ViewData.ModelState.Values)
+        {
+            foreach (var error in modelState.Errors)
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        }
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.DistributorStocks[0].BlanketModel.ModelName)</th>
+            <th>@Html.DisplayNameFor(model => model.DistributorStocks[0].BlanketModel.Description)</th>
+            <th>@Html.DisplayNameFor(model => model.DistributorStocks[0].BlanketModel.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.DistributorStocks[0].Inventory)</th>
+            <th>@Html.DisplayNameFor(model => model.DistributorStocks[0].BlanketModel.Material.MaterialName)</th>
+            <th>@Html.DisplayNameFor(model => model.DistributorStocks[0].BlanketModel.Material.Description)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stockItem in Model.DistributorStocks)
+        {
+            <tr>
+                <td>@stockItem.BlanketModel.ModelName</td>
+                <td>@stockItem.BlanketModel.Description</td>
+                <td>LKR @stockItem.BlanketModel.Price.ToString("F2", new CultureInfo("en-LK"))</td>
+                <td>@stockItem.Inventory</td>
+                <td>@stockItem.BlanketModel.Material.MaterialName</td>
+                <td>@stockItem.BlanketModel.Material.Description</td>
+                <td>
+                    <a asp-page="/Order/PlaceOrder" asp-route-distributorStockId="@stockItem.DistributorStockID" class="btn btn-primary">Order</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

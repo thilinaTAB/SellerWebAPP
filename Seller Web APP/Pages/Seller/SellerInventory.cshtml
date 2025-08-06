@@ -1,0 +1,44 @@
+﻿@page
+@model Seller_Web_App.Pages.Seller.SellerInventoryModel
+@{
+    ViewData["Title"] = "My Inventory";
+}
+
+<h1>My Current Inventory</h1>
+
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        @foreach (var modelState in ViewData.ModelState.Values)
+        {
+            foreach (var error in modelState.Errors)
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        }
+    </div>
+}
+
+<a asp-page="/DistributorInventory/DistributorStockModels" class="btn btn-primary mb-3">Reorder from Distributor</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Blanket Model</th>
+            <th>Description</th>
+            <th>Current Stock</th>
+            <th>Material</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inventoryItem in Model.SellerInventory)
+        {
+            <tr>
+                <td>@inventoryItem.ModelName</td>
+                <td>@inventoryItem.Description</td>
+                <td>@inventoryItem.Quantity</td>
+                <td>@inventoryItem.MaterialName</td>
+            </tr>
+        }
+    </tbody>
+</table>
