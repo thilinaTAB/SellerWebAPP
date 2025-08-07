@@ -1,20 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿// Seller_Web_App/Models/SellerInventoryView.cs
+using System.Text.Json.Serialization;
 
 namespace Seller_Web_App.Models
 {
     public class SellerInventoryView
     {
-        public int SellerInventoryId { get; set; }
-        public int BlanketModelId { get; set; }
+        public int InventoryID { get; set; }
+        public int Quantity { get; set; }
+        public int SellerID { get; set; }
+        public int ModelID { get; set; }
 
-        [Display(Name = "Blanket Model")]
         public string ModelName { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-
-        [Display(Name = "Current Stock")]
-        public int Quantity { get; set; }
-
-        [Display(Name = "Material")]
         public string MaterialName { get; set; } = string.Empty;
+        public string MaterialDescription { get; set; } = string.Empty;
     }
 }

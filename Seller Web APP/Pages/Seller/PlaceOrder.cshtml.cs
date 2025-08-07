@@ -77,7 +77,7 @@ namespace Seller_Web_App.Pages.Order
                     var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
                     AvailableDistributorStocks = JsonSerializer.Deserialize<List<DistributorStockView>>(content, options) ?? new List<DistributorStockView>();
 
-                    DistributorStocksDropdown = new SelectList(AvailableDistributorStocks, "DistributorStockID", "ModelName");
+                    DistributorStocksDropdown = new SelectList(AvailableDistributorStocks, "DistributorStockID", "BlanketModel.ModelName");
                 }
                 else
                 {
